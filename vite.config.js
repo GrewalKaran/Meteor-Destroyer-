@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
 
-export default defineConfig({
-  base: '/Meteor-Destroyer-/' // This is necessary for GitHub Pages
-});
+export default {
+  base: '/Meteor-Destroyer-/', // use your repo name here
+}
