@@ -29,7 +29,7 @@ export default class PlayScene extends Phaser.Scene {
     this.meteorGroup = this.physics.add.group()
     this.meteorArray = []
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 10; i++) {
       const meteor = new Meteor(this, 300, 300)
 
       const xPos = Phaser.Math.RND.between(0, 800)
@@ -44,7 +44,7 @@ export default class PlayScene extends Phaser.Scene {
 
     this.laserGroup = this.physics.add.group({
       classType: Laser,
-      maxSize: 1,
+      maxSize: 5,
       runChildUpdate: true
     })
 
