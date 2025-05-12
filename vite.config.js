@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vite'
 
-export default {
-  base: '/Meteor-Destroyer-/', // use your repo name here
-}
+export default defineConfig({
+  base: '/Meteor-Destroyer-/', // replace with your repo name
+})

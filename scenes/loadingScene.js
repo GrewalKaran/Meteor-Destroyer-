@@ -16,12 +16,12 @@ export default class  LoaderScene extends Phaser.Scene{
 
     this.load.bitmapFont(
             "arcade",
-            "/assets/Fonts/arcade.png",  
-            "/assets/Fonts/arcade.xml"
+            "public/assets/Fonts/arcade.png",  
+            "public/assets/Fonts/arcade.xml"
 );
 
-    this.load.audio('shoot','/assets/laser-shoot.wav')
-    this.load.audio('explosion','/assets/laser-explosion.wav')
+    this.load.audio('shoot','public/assets/laser-shoot.wav')
+    this.load.audio('explosion','public/assets/laser-explosion.wav')
     
 }
     
