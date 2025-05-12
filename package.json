@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build",
+    "homepage": "https://GrewalKaran.github.io/Meteor-Destroyer-/"
   },
   "devDependencies": {
     "gh-pages": "^6.3.0",
