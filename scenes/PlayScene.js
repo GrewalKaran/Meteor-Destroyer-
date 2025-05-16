@@ -15,7 +15,11 @@ export default class PlayScene extends Phaser.Scene {
     const width = this.cameras.main.width
     const height = this.cameras.main.height
 
-    this.score = 0
+    
+    this.startTime = null // Time when the rocket first moves
+    this.elapsedTime = 0  // Elapsed time in seconds
+    this.timerRunning = false
+
 
     this.background = this.add.image(0, 0, 'starfield').setOrigin(0,0)
 
@@ -28,6 +32,8 @@ export default class PlayScene extends Phaser.Scene {
     // generate our meteors
     this.meteorGroup = this.physics.add.group()
     this.meteorArray = []
+
+  
 
     for (let i = 0; i < 10; i++) {
       const meteor = new Meteor(this, 300, 300)
@@ -50,14 +56,19 @@ export default class PlayScene extends Phaser.Scene {
 
     this.physics.add.overlap(this.laserGroup, this.meteorGroup, this.collision, null, this)
 
-    this.scoreText = this.add
-    .bitmapText(width - 200, 20, 'arcade', 'Score: 0000', 24)
+    this.timeText = this.add
+    .bitmapText(width - 80, 20, 'arcade', 'Time: 0.0s', 24)
     .setOrigin(0.5)
 
     this.cursors = this.input.keyboard.createCursorKeys()
   }
 
   update(time, delta) {
+
+    if (!this.timerRunning && (this.cursors.up.isDown || this.cursors.left.isDown || this.cursors.right.isDown)) {
+      this.startTime = this.time.now
+      this.timerRunning = true
+    }
 
     if (this.cursors.up.isDown) {
       this.physics.velocityFromRotation(this.player.rotation, 150, this.player.body.acceleration)
@@ -86,18 +97,22 @@ export default class PlayScene extends Phaser.Scene {
       meteor.update(time, delta)
     }
 
-    this.scoreText.setText('Score: ' + this.score)
+
+    if (this.timerRunning) {
+      this.elapsedTime = (this.time.now - this.startTime) / 1000
+      this.timeText.setText('Time: ' + this.elapsedTime.toFixed(1) + 's')
+    }
 
   }
 
   collision(laser, meteor) {
     laser.destroy()
     meteor.destroy()
-    this.score += 10
     this.sound.play('explosion')
 
     if (this.meteorGroup.countActive() === 0) {
-      this.scene.switch('game-over-scene')
+      this.timerRunning = false
+      this.scene.switch('game-over-scene',{ finalTime: this.elapsedTime.toFixed(1) })
     }
   }
 

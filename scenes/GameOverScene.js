@@ -8,6 +8,9 @@ export default class GameOverScene extends Phaser.Scene {
 
   preload() {
   }
+  init(data) {
+    this.finalTime = data.finalTime
+  }
 
   create() {
     const width = this.cameras.main.width;
@@ -17,6 +20,10 @@ export default class GameOverScene extends Phaser.Scene {
 
     const titleText = this.add
     .bitmapText(width /2, height / 2 - 50, 'arcade', 'GAME OVER', 40)
+    .setOrigin(0.5)
+
+    const score =this.add
+    .bitmapText(width /2, height / 2 - 10, 'arcade', `You took ${this.finalTime}'s to complete`, 40)
     .setOrigin(0.5)
   }
 
