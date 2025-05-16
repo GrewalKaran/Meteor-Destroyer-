@@ -3,10 +3,15 @@ import LoaderScene from '../scenes/loadingScene'
 import MainMenuScene from '../scenes/MainMenuScene';
 import PlayScene from '../scenes/PlayScene';
 import GameOverScene from '../scenes/GameOverScene';
+
+window.addEventListener('resize', () => {
+  game.scale.resize(window.innerWidth, window.innerHeight);
+});
+
 const config ={
   type: Phaser.AUTO,
-  width: 800,
-  height: 600,
+  width: window.innerWidth,         // 👈 Set to window width
+  height: window.innerHeight,
   physics:{
     default: 'arcade',
     arcade: {

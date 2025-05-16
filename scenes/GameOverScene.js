@@ -17,13 +17,17 @@ export default class GameOverScene extends Phaser.Scene {
     const height = this.cameras.main.height;
 
     this.background = this.add.image(0, 0, 'starfield').setOrigin(0,0)
+    const scaleX = width / this.background.width
+    const scaleY = height / this.background.height
+    const scale = Math.max(scaleX, scaleY)
+    this.background.setScale(scale)
 
     const titleText = this.add
-    .bitmapText(width /2, height / 2 - 50, 'arcade', 'GAME OVER', 40)
+    .bitmapText(width / 2, height / 2 - 50, 'arcade', 'GAME OVER', 40)
     .setOrigin(0.5)
 
     const score =this.add
-    .bitmapText(width /2, height / 2 - 10, 'arcade', `You took ${this.finalTime}'s to complete`, 40)
+    .bitmapText(width / 2, height / 2 + 10, 'arcade', `You took ${this.finalTime}'s to complete`, 30)
     .setOrigin(0.5)
   }
 

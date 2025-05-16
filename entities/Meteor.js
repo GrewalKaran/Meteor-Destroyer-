@@ -27,20 +27,24 @@ export default class Meteor extends Phaser.Physics.Arcade.Image{
 
     update(time,delta){
         if(this.active){
+            const width = this.scene.scale.width;
+            const height = this.scene.scale.height;
+
             this.x += this.factor * Math.cos(this.direction) * this.speed * delta;
             this.y += Math.cos(this.direction) *  this.speed * delta;
             this.angle += this.angleRotation
 
-            if(this.x<0){
-                this.x = 800;
-            }else if(this.x>800){
-                this.x=0
+            if (this.x < 0) {
+                this.x = width;
+            } else if (this.x > width) {
+                this.x = 0;
             }
-            if(this.y<0){
-                this.y=600;
-            }else if(this.y>600){
-                this.y=0;
+              if (this.y < 0) {
+                this.y = height;
+            } else if (this.y > height) {
+                this.y = 0;
             }
+          
         }
     }
 }

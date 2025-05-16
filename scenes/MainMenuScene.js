@@ -14,7 +14,7 @@ export default class MainMenuScene extends Phaser.Scene{
 
         const titleText = this
         .add
-        .bitmapText(width /2, height / 2 - 50, 'arcade', 'Meteor Swarm', 40)
+        .bitmapText(width /2, height / 2, 'arcade', 'Meteor Swarm', 40)
         .setOrigin(0.5)
         this.cursor=this.input.keyboard.createCursorKeys();
     }

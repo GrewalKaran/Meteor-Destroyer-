@@ -12,8 +12,11 @@ export default class PlayScene extends Phaser.Scene {
   }
 
   create() {
-    const width = this.cameras.main.width
-    const height = this.cameras.main.height
+
+    this.physics.world.setBounds(0, 0, this.scale.width, this.scale.height);
+    
+    const width = this.sys.game.config.width
+    const height = this.sys.game.config.height
 
     
     this.startTime = null // Time when the rocket first moves
@@ -21,7 +24,11 @@ export default class PlayScene extends Phaser.Scene {
     this.timerRunning = false
 
 
-    this.background = this.add.image(0, 0, 'starfield').setOrigin(0,0)
+    const bg = this.add.image(width / 2, height / 2, 'starfield');
+    const scaleX = width / bg.width;
+    const scaleY = height / bg.height;
+    const scale = Math.max(scaleX, scaleY); // Cover whole screen
+    bg.setScale(scale).setScrollFactor(0);
 
     this.player = this.physics.add.image(200, 200, 'player')
     this.player.setDrag(0.99)
